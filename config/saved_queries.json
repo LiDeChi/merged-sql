@@ -1,0 +1,3 @@
+{
+  "中间表": "SELECT * \nFROM user_game_summary_date \nWHERE date >= '2025-01-19' and date <= '2025-01-19'\nLIMIT 1000000;"
+}
