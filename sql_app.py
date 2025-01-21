@@ -14,6 +14,10 @@ import concurrent.futures
 from concurrent.futures import ThreadPoolExecutor, as_completed
 import threading
 from multiprocessing import Value
+from dotenv import load_dotenv
+
+# 加载环境变量
+load_dotenv()
 
 # 添加项目根目录到Python路径
 project_root = Path(__file__).parent
@@ -295,6 +299,20 @@ def execute_query(query):
 
 def load_config():
     """加载配置文件"""
+    # 优先使用环境变量
+    if os.getenv("METABASE_URL") and os.getenv("METABASE_SESSION_ID") and os.getenv("METABASE_DEVICE_ID"):
+        config = {
+            "metabase": {
+                "base_url": os.getenv("METABASE_URL"),
+                "session_id": os.getenv("METABASE_SESSION_ID"),
+                "device_id": os.getenv("METABASE_DEVICE_ID")
+            },
+            "target_databases": [int(db_id) for db_id in os.getenv("TARGET_DATABASES", "98,161,164,194").split(",")],
+            "output_dir": os.getenv("OUTPUT_DIR", "03_Data/merged_data")
+        }
+        return config
+    
+    # 如果没有环境变量，则使用配置文件
     config_path = project_root / "config" / "database_config.json"
     with open(config_path, 'r') as f:
         return json.load(f)
