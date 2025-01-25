@@ -1,8 +1,8 @@
 {
     "metabase": {
         "base_url": "http://52.37.92.53:3000",
-        "session_id": "923a929f-65ac-41ce-976a-9aec181157cf",
-        "device_id": "923a929f-65ac-41ce-976a-9aec181157cf"
+        "session_id": "4d2bc32d-2df7-45a4-be5c-e33477f0c312",
+        "device_id": "8a1fd8ef-721e-484b-b1f1-5d70879d634f"
     },
     "target_databases": [98, 161, 164, 194],
     "output_dir": "03_Data/merged_data"
